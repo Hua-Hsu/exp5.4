@@ -167,6 +167,21 @@ GlobalRoundUpdated.classList.add("hidden");
 *        round to write to the table.
 * @global GlobalUserData: The data for the current user
 *************************************************************************/
+/**
+ * Actually delete the round data and update display.
+ * @param {string} roundId  The ID of the round to delete.
+ */
+function deleteRound(roundId) {
+  // from localStorage rounds
+  const rounds = JSON.parse(localStorage.getItem('rounds')) || [];
+  
+  const updated = rounds.filter(r => r.id !== roundId);
+  // write back storage
+  localStorage.setItem('rounds', JSON.stringify(updated));
+  
+  updateRoundInTable(); 
+}
+
 function writeRoundToTable(row, rIndex) {
 row.innerHTML = "<td>" + GlobalUserData.rounds[rIndex].date + "</td><td>" +
 GlobalUserData.rounds[rIndex].course + "</td><td>" + 
