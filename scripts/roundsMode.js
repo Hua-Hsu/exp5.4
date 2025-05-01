@@ -217,6 +217,26 @@ const thisRound = document.getElementById("r-" + GlobalUserData.rounds[rowIndex]
 writeRoundToTable(thisRound,rowIndex);
 }
 
+/**
+ * Show confirmation modal before deleting a round.
+ * @param {string} roundId  The ID of the round to delete.
+ */
+function confirmDelete(roundId) {
+  const modal = document.getElementById('confirmDeleteModal');
+  modal.style.display = 'block';
+
+  // when push Yes， deleteRound and close modal
+  document.getElementById('confirmDeleteBtn').onclick = () => {
+    deleteRound(roundId);
+    modal.style.display = 'none';
+  };
+  // when you push No，just close modal
+  document.getElementById('cancelDeleteBtn').onclick = () => {
+    modal.style.display = 'none';
+  };
+}
+
+
 /*************************************************************************
 * @function populateRoundsTable 
 * @desc 
